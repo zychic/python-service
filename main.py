@@ -39,14 +39,16 @@ async def transcribe(
         logger.info(f"Saved temp audio: {temp_audio_path}")
         logger.info(f"File size: {os.path.getsize(temp_audio_path)} bytes")
 
-       from basic_pitch.inference import predict_and_save
-from basic_pitch import ICASSP_2022_MODEL_PATH
-            [temp_audio_path],
-            output_dir,
-            save_midi=True,
-            sonify_midi=False,
-            save_model_outputs=False,
-            save_notes=True
+ predict_and_save(
+    [temp_audio_path],
+    output_dir,
+    True,
+    False,
+    False,
+    True,
+    ICASSP_2022_MODEL_PATH
+)      
+    
         )
 
         output_files = os.listdir(output_dir)
