@@ -62,7 +62,14 @@ async def transcribe(
     try:
         # Wrap Basic Pitch transcription in try/except
         logger.info("Starting Basic Pitch transcription...")
-        basicpitch.predict_and_save(
+       predict_and_save(
+    [temp_audio_path],
+    output_dir,
+    save_midi=True,
+    sonify_midi=False,
+    save_model_outputs=False,
+    save_notes=True
+)
             audio_path=temp_audio_path,
             output_directory=output_dir,
             save_midi=True,
