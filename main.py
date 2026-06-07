@@ -5,7 +5,8 @@ import traceback
 import logging
 from fastapi import FastAPI, UploadFile, File, HTTPException, Header
 from basic_pitch.inference import predict_and_save
-from basic_pitch.inference import predict_and_save
+from basic_pitch import ICASSP_2022_MODEL_PATH
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -39,16 +40,14 @@ async def transcribe(
         logger.info(f"Saved temp audio: {temp_audio_path}")
         logger.info(f"File size: {os.path.getsize(temp_audio_path)} bytes")
 
-predict_and_save(
-    [temp_audio_path],
-    output_dir,
-    True,
-    False,
-    False,
-    True,
-    ICASSP_2022_MODEL_PATH
-)
-    
+        predict_and_save(
+            [temp_audio_path],
+            output_dir,
+            True,
+            False,
+            False,
+            True,
+            ICASSP_2022_MODEL_PATH
         )
 
         output_files = os.listdir(output_dir)
@@ -92,3 +91,9 @@ predict_and_save(
             status_code=500,
             detail={"error": str(e), "type": type(e).__name__}
         )
+
+    finally:
+        try:
+            os.remove(temp_audio_path)
+        except Exception:
+            pass
