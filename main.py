@@ -39,7 +39,7 @@ async def transcribe(
         logger.info(f"Saved temp audio: {temp_audio_path}")
         logger.info(f"File size: {os.path.getsize(temp_audio_path)} bytes")
 
- predict_and_save(
+predict_and_save(
     [temp_audio_path],
     output_dir,
     True,
@@ -47,7 +47,7 @@ async def transcribe(
     False,
     True,
     ICASSP_2022_MODEL_PATH
-)      
+)
     
         )
 
