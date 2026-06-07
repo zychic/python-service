@@ -3,7 +3,7 @@ import os
 import logging
 from fastapi import FastAPI, UploadFile, File, HTTPException, Header
 from fastapi.responses import JSONResponse
-import basicpitch
+from basic_pitch.inference import predict_and_save
 import csv
 import tempfile
 
