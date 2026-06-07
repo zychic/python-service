@@ -5,7 +5,7 @@ import traceback
 import logging
 from fastapi import FastAPI, UploadFile, File, HTTPException, Header
 from basic_pitch.inference import predict_and_save
-
+from basic_pitch.inference import predict_and_save
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
